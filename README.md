@@ -7,14 +7,15 @@ Já construí algumas API's com express mas não estava satisfeito e queria algo
 
 ## Objetivos
 ###### No final deverei estar realizando um CRUD completo de usuários e autenticação com JWT
-- [ ] Construir uma nova rota
-- [ ] Configurar TypeORM
-- [ ] Modelo Usuário ( Inicial )
-- [ ] Migration Usuário
-- [ ] Cadastro de Usuário ( C )
-- [ ] Hash da Senha
-- [ ] Login ( R )
-- [ ] Implementação de JWT
-- [ ] Validação de Token
+- [x] Construir uma nova rota
+- [x] Configurar TypeORM
+- [x] Modelo Usuário ( Inicial )
+- [x] Migration Usuário
+- [x] Cadastro de Usuário ( C )
+- [x] Recuperar Usuários ( R )
 - [ ] Update de Nome  ( U )
 - [ ] Exclusão de conta ( D )
+- [ ] Habilitar Login
+- [ ] Hash da Senha
+- [ ] Implementação de JWT
+- [ ] Validação de Token
