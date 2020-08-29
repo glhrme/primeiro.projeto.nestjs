@@ -1,6 +1,7 @@
 import { Controller, Get, HttpCode, Post, Body } from '@nestjs/common'
-import User from './user.validator'
+import IUser from './interfaces/user.interface'
 import { UserService } from './user.service'
+import UserUtils from './user.utils'
 
 @Controller('user')
 export class UserController {
@@ -14,7 +15,8 @@ export class UserController {
   }
 
   @Post()
-  async create(@Body() user: User) {
+  async create(@Body() _user: IUser) {
+    const user = await UserUtils.validateUser(_user)
     return this.userService.createUser(user)
   }
 }
