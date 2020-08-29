@@ -9,9 +9,8 @@ export class UserController {
 
   @Get()
   @HttpCode(200)
-  getUser() {
-    this.userService.findAll().then(user => console.log(user))
-    return true
+  async getUser(@Body() { email } : IUser) {
+    return await this.userService.findUser(email)
   }
 
   @Post()

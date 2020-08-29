@@ -9,8 +9,12 @@ export class UserService {
     private userRepository: Repository<User>
   ) {}
 
-  async findAll(): Promise<User[]> {
-    return this.userRepository.find()
+  async findUser(email: string) {
+    return await this.userRepository.find({
+      where: {
+        email
+      }
+    })
   }
 
   async createUser(user: User) {
