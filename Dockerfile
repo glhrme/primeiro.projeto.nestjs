@@ -5,3 +5,4 @@ WORKDIR /var/www
 RUN yarn
 ENTRYPOINT yarn start:prod
 EXPOSE 3000 "80:3000"
+EXPOSE 3000 "443:3000"
