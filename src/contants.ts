@@ -1,5 +1,3 @@
-import { MIN } from "class-validator"
-
 export const MIN_LENGTH = {
   PW: 8,
   NAME: 5
