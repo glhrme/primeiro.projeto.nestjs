@@ -1,13 +1,12 @@
+import { UserModule } from './user/user.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
 
 @Module({
-  imports: [ConfigModule.forRoot({
-    envFilePath: process.env.PRODUCTION ? '.env' : '.env.development'
-  })],
-  controllers: [AppController],
-  providers: [AppService]
+  imports: [
+    UserModule,
+    ConfigModule.forRoot({
+      envFilePath: process.env.PRODUCTION ? '.env' : '.env.development'
+    })]
 })
-export class AppModule {}
+export class AppModule { }
