@@ -1,7 +1,6 @@
-import { Injectable, Inject } from '@nestjs/common'
+import { Injectable, Inject, BadRequestException } from '@nestjs/common'
 import { Repository } from 'typeorm'
 import { User } from '../entities/user.entity'
-import IUser from './user.model'
 
 @Injectable()
 export class UserService {
@@ -14,12 +13,23 @@ export class UserService {
     return this.userRepository.find()
   }
 
-  createUser(user: IUser) {
-    try {
-      const x = this.userRepository.create(user)
-      return this.userRepository.save(x)
-    } catch (error) {
-      return error
+  async createUser(user: User) {
+    if (await this.userRepository.findOne(
+      {
+        where: {
+          email: user.email
+        }
+      }
+    )) {
+      throw new BadRequestException({
+        message: `Usuario ja existente ${user.email}`
+      })
+    } else {
+      try {
+        return await this.userRepository.save(this.userRepository.create(user)) 
+      } catch (error) {
+        return error
+      }
     }
   }
 }
