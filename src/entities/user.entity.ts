@@ -31,7 +31,7 @@ export class User {
     @Column({
       unique: true
     })
-    @IsEmail(undefined ,{
+    @IsEmail({ } ,{
       message: ERRORS_VALIDATION.EMAIL
     })
     email: string
