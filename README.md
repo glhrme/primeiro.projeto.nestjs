@@ -10,11 +10,10 @@ Já construí algumas API's com express mas não estava satisfeito e queria algo
 - [x] Construir uma nova rota
 - [x] Configurar TypeORM
 - [x] Modelo Usuário ( Inicial )
-- [x] Migration Usuário
 - [x] Cadastro de Usuário ( C )
 - [x] Recuperar Usuários ( R )
-- [ ] Update de Nome  ( U )
-- [ ] Exclusão de conta ( D )
+- [x] Update de Nome  ( U )
+- [x] Exclusão de conta ( D )
 - [ ] Habilitar Login
 - [ ] Hash da Senha
 - [ ] Implementação de JWT
