@@ -1,5 +1,6 @@
-import { Injectable, Inject, BadRequestException } from '@nestjs/common'
+import { Injectable, Inject, BadRequestException, UnauthorizedException } from '@nestjs/common'
 import { Repository } from 'typeorm'
+import UserUtils from './user.utils'
 import { User } from '../entities/user.entity'
 
 @Injectable()
@@ -9,12 +10,20 @@ export class UserService {
     private userRepository: Repository<User>
   ) { }
 
-  async findUser(email: string) {
-    return await this.userRepository.find({
+  async findUser(email: string, password: string) {
+    const user = await this.userRepository.findOne({
       where: {
         email
       }
     })
+    if(await UserUtils.comparePassword(password, user.password)) {
+      return {
+        ...user,
+        password: null
+      }
+    } else {
+      throw new UnauthorizedException('Usuário ou senha inválidos')
+    }
   }
 
   async createUser(user: User) {
@@ -30,7 +39,12 @@ export class UserService {
       })
     } else {
       try {
-        return await this.userRepository.save(this.userRepository.create(user)) 
+        const createdUser = this.userRepository.create(user)
+        await this.userRepository.save(createdUser)
+        return {
+          ...createdUser,
+          password: null
+        }
       } catch (error) {
         return error
       }

@@ -9,8 +9,8 @@ export class UserController {
 
   @Get()
   @HttpCode(200)
-  async getUser(@Body() { email } : IUser) {
-    return await this.userService.findUser(email)
+  async getUser(@Body() { email, password } : IUser) {
+    return await this.userService.findUser(email, password)
   }
 
   @Post()
