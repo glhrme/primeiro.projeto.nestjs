@@ -7,7 +7,7 @@ export class UserService {
   constructor(
     @Inject('USER_REPOSITORY')
     private userRepository: Repository<User>
-  ) {}
+  ) { }
 
   async findUser(email: string) {
     return await this.userRepository.find({
@@ -34,6 +34,25 @@ export class UserService {
       } catch (error) {
         return error
       }
+    }
+  }
+
+  async updateUser(_email: string, _user) {
+    try {
+      const user = await this.userRepository.findOne({
+        where: {
+          email: _email
+        }
+      })
+
+      Object.keys(user).forEach(key => {
+        if(_user[key]) {
+          user[key] = _user[key]
+        }
+      })
+      return await this.userRepository.save(user)
+    } catch (error) {
+      throw new BadRequestException(error.message)
     }
   }
 }
