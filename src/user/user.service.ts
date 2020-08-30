@@ -55,4 +55,18 @@ export class UserService {
       throw new BadRequestException(error.message)
     }
   }
+
+  async deleteUser(email: string) {
+    try {
+      const user = await this.userRepository.findOne({
+        where: {
+          email: email
+        }
+      })
+      
+      return await this.userRepository.remove(user)
+    } catch (error) {
+      throw new BadRequestException(error.message)
+    }
+  }
 }

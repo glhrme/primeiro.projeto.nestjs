@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Post, Body, Put, Param } from '@nestjs/common'
+import { Controller, Get, HttpCode, Post, Body, Put, Param, Delete } from '@nestjs/common'
 import IUser from './interfaces/user.interface'
 import { UserService } from './user.service'
 import UserUtils from './user.utils'
@@ -23,5 +23,10 @@ export class UserController {
   async update(@Param('email') email: string, @Body() _user: IUser) {
     await UserUtils.validateUser(_user)
     return this.userService.updateUser(email, _user)
+  }
+
+  @Delete(':email')
+  async delete(@Param('email') email: string) {
+    return this.userService.deleteUser(email)
   }
 }
