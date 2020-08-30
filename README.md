@@ -14,7 +14,7 @@ Já construí algumas API's com express mas não estava satisfeito e queria algo
 - [x] Recuperar Usuários ( R )
 - [x] Update de Nome  ( U )
 - [x] Exclusão de conta ( D )
+- [x] Hash da Senha
 - [ ] Habilitar Login
-- [ ] Hash da Senha
 - [ ] Implementação de JWT
 - [ ] Validação de Token
