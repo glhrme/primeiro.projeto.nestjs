@@ -1,7 +1,7 @@
-import { Injectable, Inject, BadRequestException, UnauthorizedException } from '@nestjs/common'
+import { Injectable, Inject, BadRequestException } from '@nestjs/common'
 import { Repository } from 'typeorm'
-import UserUtils from './user.utils'
 import { User } from '../entities/user.entity'
+import IUser from './interfaces/user.interface'
 
 @Injectable()
 export class UserService {
@@ -10,23 +10,23 @@ export class UserService {
     private userRepository: Repository<User>
   ) { }
 
-  async findUser(email: string, password: string) {
-    const user = await this.userRepository.findOne({
-      where: {
-        email
-      }
-    })
-    if(await UserUtils.comparePassword(password, user.password)) {
-      return {
-        ...user,
-        password: null
-      }
-    } else {
-      throw new UnauthorizedException('Usuário ou senha inválidos')
+  //Para fazer login
+  async getUser(email: string) {
+    try {
+      const user = await this.userRepository.findOne({
+        where: {
+          email
+        }
+      })
+      return user
+    } catch (error) {
+      return false
     }
   }
 
+  //Criar um usuário no banco
   async createUser(user: User) {
+
     if (await this.userRepository.findOne(
       {
         where: {
@@ -41,17 +41,16 @@ export class UserService {
       try {
         const createdUser = this.userRepository.create(user)
         await this.userRepository.save(createdUser)
-        return {
-          ...createdUser,
-          password: null
-        }
+        delete createdUser.password
+        return createdUser
       } catch (error) {
         return error
       }
     }
+  
   }
 
-  async updateUser(_email: string, _user) {
+  async updateUser(_email: string, _user: IUser) {
     try {
       const user = await this.userRepository.findOne({
         where: {
