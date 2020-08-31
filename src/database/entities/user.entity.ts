@@ -39,6 +39,19 @@ export class User {
   })
   role: string
 
+  @Column({
+    default: false
+  })
+  emailValidated: boolean
+
+  @Column()
+  tokenValidateEmail: string
+
+  @Column({
+    default: ''
+  })
+  tokenRecoveryEmail: string
+
   @CreateDateColumn()
   createdAt: Date
 
