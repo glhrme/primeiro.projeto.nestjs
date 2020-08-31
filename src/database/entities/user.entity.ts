@@ -3,8 +3,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
-  PrimaryColumn
+  UpdateDateColumn
 } from "typeorm"
 import { IsEmail, IsString, MinLength } from 'class-validator'
 import { ERRORS_VALIDATION, MIN_LENGTH } from '../../contants'
@@ -12,7 +11,7 @@ import { ERRORS_VALIDATION, MIN_LENGTH } from '../../contants'
 @Entity()
 export class User {
 
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number
 
   @Column()
