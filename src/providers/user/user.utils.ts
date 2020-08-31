@@ -1,6 +1,6 @@
 import { validate } from 'class-validator'
 import IUser from './interfaces/user.interface'
-import { User } from 'entities/user.entity'
+import { User } from '../../database/entities/user.entity'
 import { BadRequestException } from '@nestjs/common'
 
 export default class UserUtils {

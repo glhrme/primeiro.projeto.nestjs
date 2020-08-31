@@ -3,15 +3,16 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  PrimaryColumn
 } from "typeorm"
 import { IsEmail, IsString, MinLength } from 'class-validator'
-import { ERRORS_VALIDATION, MIN_LENGTH } from '../contants'
+import { ERRORS_VALIDATION, MIN_LENGTH } from '../../contants'
 
 @Entity()
 export class User {
 
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id: number
 
   @Column()
@@ -19,20 +20,25 @@ export class User {
   @MinLength(MIN_LENGTH.NAME, {
     message: ERRORS_VALIDATION.NAME
   })
-  name: string;
+  name: string
 
   @Column()
   @IsString({ message: ERRORS_VALIDATION.STRING })
   @MinLength(MIN_LENGTH.PW, {
     message: ERRORS_VALIDATION.PW_LENGTH
   })
-  password: string;
+  password: string
   
   @Column()
   @IsEmail({  }, {
     message: ERRORS_VALIDATION.EMAIL
   })
   email: string
+
+  @Column({
+    default: 'user'
+  })
+  role: string
 
   @CreateDateColumn()
   createdAt: Date

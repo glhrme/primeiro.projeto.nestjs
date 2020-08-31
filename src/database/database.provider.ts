@@ -19,7 +19,7 @@ export const databaseProvider = [
       subscribers: [
         "../subscriber/**/*.ts"
       ],
-      synchronize: false
+      synchronize: true
     })
   }
 ]
