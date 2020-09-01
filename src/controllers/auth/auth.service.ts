@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt'
 import { UserService } from 'providers/user/user.service'
 import AuthUtils from './auth.utils'
 import { User } from 'database/entities/user.entity'
+import { TOKEN_PAYLOAD } from 'contants'
 
 @Injectable()
 export class AuthService { 
@@ -22,7 +23,7 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const payload = {
+    const payload: TOKEN_PAYLOAD = {
       id: user.id,
       name: user.name,
       email: user.email,
