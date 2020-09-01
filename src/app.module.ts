@@ -6,11 +6,12 @@ import { ConfigModule } from '@nestjs/config'
 
 @Module({
   imports: [
-    AuthModule,
-    DatabaseModule,
-    UserModule,
     ConfigModule.forRoot({
       envFilePath: process.env.PRODUCTION ? '.env' : '.env.development'
-    })]
+    }),
+    DatabaseModule,
+    UserModule,
+    AuthModule
+  ]
 })
 export class AppModule { }
