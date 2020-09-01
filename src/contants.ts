@@ -9,3 +9,10 @@ export const ERRORS_VALIDATION = {
   NAME: `Tamanho de nome inválido, o mínimo de caractres são: ${MIN_LENGTH.NAME}`,
   EMAIL: 'E-mail inválido'
 }
+
+export interface TOKEN_PAYLOAD {
+  id: number,
+  name: string,
+  email: string,
+  role: string
+}
