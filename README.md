@@ -15,6 +15,9 @@ Já construí algumas API's com express mas não estava satisfeito e queria algo
 - [x] Update de Nome  ( U )
 - [x] Exclusão de conta ( D )
 - [x] Hash da Senha
-- [ ] Habilitar Login
-- [ ] Implementação de JWT
-- [ ] Validação de Token
+- [x] Habilitar Login
+- [x] Implementação de JWT
+- [x] Validação de Token
+
+Dia 01/09 às 00:36m finalizo todos os objetivos, estou extremamente feliz e irei seguir para próximo desafio.
+Ainda há coisas que não consegui desvendar, como por exemplo usar migrations ao invés de SYNC automática, pois o TypeORM exclui meus registro sempre que reinicio o server.
